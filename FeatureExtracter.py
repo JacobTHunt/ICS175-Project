@@ -21,3 +21,14 @@ def ExtractFeaturesWithFrequencies(document):
         features['contains(%s)' % token] = True
         features['frequency(%s)' % token] = frequency
     return features
+    
+def ExtractFeaturesBestWords(document, best_words):
+    document_words = set(document)
+    
+    features = {}
+    for word in document_words:
+        token, frequency = word.split(":")
+        if token in best_words:
+            features['contains(%s)' % token] = True
+            
+    return features

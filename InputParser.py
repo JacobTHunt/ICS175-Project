@@ -12,8 +12,8 @@ Reads in a REVIEW file and returns a list of documents along with their label
 import re
 
 
-def InputParserNoFrequencies(file_name):    
-    lines = [line.strip() for line in open(file_name)]
+def InputParserNoFrequencies(file_name, encoding):    
+    lines = [line.strip() for line in open(file_name, encoding=encoding)]
     
     documents = [line.split(" ") for line in lines]
     
@@ -32,8 +32,8 @@ def InputParserNoFrequencies(file_name):
         
     return [document_features, words]
     
-def InputParserWithFrequencies(file_name):    
-    lines = [line.strip() for line in open(file_name)]
+def InputParserWithFrequencies(file_name, encoding):    
+    lines = [line.strip() for line in open(file_name, encoding=encoding)]
     
     documents = [line.split(" ") for line in lines]
     words = set()
@@ -46,5 +46,3 @@ def InputParserWithFrequencies(file_name):
         document_features.append((document, category))
 
     return [document_features, words];
-
-InputParserWithFrequencies("unlabeled.REVIEW")
