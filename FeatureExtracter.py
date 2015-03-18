@@ -31,4 +31,19 @@ def ExtractFeaturesBestWords(document, best_words):
         if token in best_words:
             features['contains(%s)' % token] = True
             
+def FeaturesEqualsBestWords(document, best_words):
+    document_words = set(document)
+    
+    features = {}
+    for word in document_words:
+        token, frequency = word.split(":")
+        if token in best_words:
+            features['contains(%s)' % token] = True
+        
+    
+    for word in best_words:
+        feature = 'contains(%s)' % word
+        if feature not in features:
+            features[feature] = False
+            
     return features

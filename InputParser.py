@@ -46,3 +46,18 @@ def InputParserWithFrequencies(file_name, encoding):
         document_features.append((document, category))
 
     return [document_features, words];
+
+def InputParserBuildDictionary(file_name, encoding):
+    lines = [line.strip() for line in open(file_name, encoding=encoding)]
+    
+    documents = [line.split(" ") for line in lines]
+    labels = []
+    document_features = []
+    
+    for document in documents:
+        labels.append(re.sub(r'#label#:', '', document[-1]))
+        document = document[0:-1]
+    
+        document_features.append((document, category))
+    
+    return [document_features, labels];

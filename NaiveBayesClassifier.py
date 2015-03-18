@@ -7,6 +7,7 @@ Created on Fri Feb  6 12:54:08 2015
 import FeatureExtracter
 import InformationGainCalculator
 import InputParser
+import MajorityClassifier
 import nltk
 
 def ClassifierNoFrequencies():
@@ -41,6 +42,13 @@ def ClassifierWithBestWords():
     train_set, test_set = document_features[400:], document_features[:400]
     
     classifier = nltk.NaiveBayesClassifier.train(train_set)
+    
+    print("Majority Classifier")
+    maj_classifier = MajorityClassifier.MajorityClassifier(train_set)
+    
+    print("Majority Class Accuracy")
+    print(maj_classifier.labels)
+    print(maj_classifier.accuracy(test_set))
     
     print(nltk.classify.accuracy(classifier, test_set))
     classifier.show_most_informative_features(5)

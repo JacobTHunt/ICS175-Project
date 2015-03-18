@@ -39,7 +39,7 @@ def CalculateBestWords(corpus):
     best_words = set([w for w, s in best])
     return best_words
          
-def CalculateBestWordsStarRating(corpus):
+def CalculateBestWordsStarRating(corpus, number_of_words):
     word_fd = FreqDist()
     label_word_fd = ConditionalFreqDist()
     
@@ -77,7 +77,7 @@ def CalculateBestWordsStarRating(corpus):
             
         word_scores[word] = one_score + two_score + four_score + five_score
      
-    best = sorted(word_scores.items(), key=operator.itemgetter(1), reverse=True)[:5000]
+    best = sorted(word_scores.items(), key=operator.itemgetter(1), reverse=True)[:number_of_words]
     best_words = set([w for w, s in best])
     return best_words
     
