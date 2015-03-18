@@ -62,7 +62,7 @@ def CalculateBestWordsStarRating(corpus, number_of_words):
     
     for word, freq in word_fd.most_common(word_fd.N()):
         #print(word)
-        #print(label_word_fd['3.0'][word], freq, , total_word_count)
+        #print(label_word_fd['3.0'][word], freq, total_word_count)
         one_score = BigramAssocMeasures.chi_sq(label_word_fd['1.0'][word],
             (freq, one_word_count), total_word_count)
             
