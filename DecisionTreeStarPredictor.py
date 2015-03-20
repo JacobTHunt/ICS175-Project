@@ -9,7 +9,6 @@ import FeatureExtracter
 import InformationGainCalculator
 import InputParser
 import nltk
-import time
 
 def StarPredictorNoFrequencies():
     print("Loading Documents")
@@ -38,19 +37,11 @@ def StarPredictorBestWords():
     train_set = [(FeatureExtracter.ExtractFeaturesBestWords(d, best_words), c) for (d,c) in train_documents]
     test_set  = [(FeatureExtracter.ExtractFeaturesBestWords(d, best_words), c) for (d,c) in test_documents ]
     
-    #document, label = test_set[0][0], test_set[0][1]
-    
     print("Training Classifier")
     classifier = nltk.classify.DecisionTreeClassifier.train(train_set, entropy_cutoff=0, support_cutoff=0)
     
     print("Accuracy")
     print(nltk.classify.accuracy(classifier, test_set))
-#    
-#    prob_labels = classifier.prob_classify(document);
-#    
-#    print("Document Label: ", label)
-#    for sample in prob_labels.samples():
-#        print(sample, ": ", prob_labels.prob(sample))
     
 
 

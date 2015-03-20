@@ -48,14 +48,12 @@ def StarPredictorWithFrequencies():
 def StarPredictorBestWords():
     print("Loading Documents")
     train_documents, train_words = InputParser.InputParserWithFrequencies("train", "Latin-1")
-    test_documents,  test_words  = InputParser.InputParserWithFrequencies("test",  "Latin-1")
+    test_documents,  test_words  = InputParser.InputParserWithFrequencies("all_balanced.review",  "Latin-1")
     
     print("Finding Best Words")
     best_words = InformationGainCalculator.CalculateBestWordsStarRating(train_documents, 4000)
     
     print("Extracting Features")
-    #train_set = [(FeatureExtracter.ExtractFeaturesBestWords(d, best_words), c) for (d,c) in train_documents]
-    #test_set  = [(FeatureExtracter.ExtractFeaturesBestWords(d, best_words), c) for (d,c) in test_documents ]
     train_set = [(FeatureExtracter.FeaturesEqualsBestWords(d, best_words), c) for (d,c) in train_documents]
     test_set  = [(FeatureExtracter.FeaturesEqualsBestWords(d, best_words), c) for (d,c) in test_documents ]
     
@@ -79,8 +77,8 @@ def StarPredictorBestWords():
     
 def FindBestNumberOfWords():
     print("Loading Documents")
-    train_documents, train_words = InputParser.InputParserWithFrequencies("train", "Latin-1")
-    test_documents,  test_words  = InputParser.InputParserWithFrequencies("test",  "Latin-1")
+    train_documents, train_words = InputParser.InputParserWithFrequencies("test", "Latin-1")
+    test_documents,  test_words  = InputParser.InputParserWithFrequencies("all_balanced.review",  "Latin-1")
     
     best_accuracy = 0;
     best_num_words = 0;
@@ -141,14 +139,17 @@ def StarToPositiveNegativeAccuracy(classifier, test_set):
     
 
 
-#print("Star Predictor Without Frequencies")
-#StarPredictorWithoutFrequencies()
+print("Star Predictor Without Frequencies")
+StarPredictorWithoutFrequencies()
+print("")
 
-#print("Star Predictor With Frequencies")
-#StarPredictorWithFrequencies()
+print("Star Predictor With Frequencies")
+StarPredictorWithFrequencies()
+print("")
 
-#print("Star Predictor Best Words") 
-#StarPredictorBestWords()
+print("Star Predictor Best Words") 
+StarPredictorBestWords()
+print("")
 
-print("Find Best Number of Words")
-FindBestNumberOfWords()
+#print("Find Best Number of Words")
+#FindBestNumberOfWords()
